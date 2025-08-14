@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Maps Integration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    iframe {
+      margin-top: 20px;
+      border: 2px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Google Maps Integration</h1>
+
+  <!-- Button to open Google Maps with place name -->
+  <button onclick="openMapByPlace()">Open Map by Place Name</button>
+
+  <!-- Button to open Google Maps with coordinates -->
+  <button onclick="openMapByCoordinates()">Open Map by Coordinates</button>
+
+  <!-- Embedded Google Map -->
+  <h2>Embedded Google Map (Taj Mahal)</h2>
+  <iframe
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    src="https://www.google.com/maps?q=Taj+Mahal&output=embed">
+  </iframe>
+
+  <script>
+    // Open map by place name
+    function openMapByPlace() {
+      const place = "Taj Mahal";
+      const url = https://www.google.com/maps?q=${encodeURIComponent(place)};
+      window.open(url, '_blank');
+    }
+
+    // Open map by coordinates
+    function openMapByCoordinates() {
+      const lat = 28.6139;
+      const lng = 77.2090;
+      const url = https://www.google.com/maps?q=${lat},${lng};
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>

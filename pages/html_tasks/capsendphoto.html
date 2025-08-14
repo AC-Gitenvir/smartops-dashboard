@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Capture and Send Photo</title>
+  <style>
+    video, canvas {
+      display: block;
+      margin: 10px auto;
+      max-width: 100%;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align: center;">📸 Capture Photo and Send via Email</h2>
+
+  <video id="video" autoplay></video>
+  <canvas id="canvas" style="display: none;"></canvas>
+  <button id="capture">Capture Photo</button>
+  <button id="send" disabled>Send Photo via Email</button>
+
+  <-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("11Mk3_WiUW1sYCS9R"); // Replace with your EmailJS Public Key
+  </script>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const captureBtn = document.getElementById('capture');
+    const sendBtn = document.getElementById('send');
+    const context = canvas.getContext('2d');
+
+    // Access webcam
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        alert("Could not access the camera. " + err);
+      });
+
+    // Capture photo
+    captureBtn.addEventListener('click', () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      canvas.style.display = 'block';
+      sendBtn.disabled = false;
+    });
+
+    // Send photo
+    sendBtn.addEventListener('click', () => {
+      const imageBase64 = canvas.toDataURL('image/png');
+
+      const templateParams = {
+        image_base64: imageBase64
+      };
+
+      emailjs.send('service_rgssijn', 'template_oef218a', templateParams)
+        .then(function(response) {
+          alert("✅ Photo sent successfully!");
+        }, function(error) {
+          alert("❌ Failed to send photo. " + JSON.stringify(error));
+        });
+    });
+  </script>
+
+</body>
+</html>

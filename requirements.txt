@@ -1,0 +1,28 @@
+# Core App Framework
+streamlit
+
+# Data Science & AI
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+altair
+langchain
+langchain-google-genai
+google-generativeai
+openai
+
+# Automation & System Tools
+pywhatkit
+twilio
+selenium
+webdriver-manager
+psutil
+paramiko
+python-jenkins
+requests
+beautifulsoup4
+Pillow
+steganography
+python-dotenv

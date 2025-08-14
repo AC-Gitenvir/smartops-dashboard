@@ -1,0 +1,11 @@
+# Ignore the Streamlit secrets file
+.streamlit/secrets.toml
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore Conda environment folders (if created inside the project)
+/smartops-env/
+
+**/chrome-win64
